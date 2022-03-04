@@ -68,4 +68,56 @@ function solution(a) {
   return a;
 }
 
-console.log(solution([-1, 150, 190, 170, -1, -1, 160, 180]));
+// console.log(solution([-1, 150, 190, 170, -1, -1, 160, 180]));
+
+//Q13
+function solution(inputString) {
+  // 인풋에서 괄호의 위치를 찾는다.
+  // counter1에는 괄호의 시작을, counter2에는 괄호의 끝을 저장한다.
+  // 첫번째 괄호의 시작부터 끝까지의 단어를 reverse한 후 다음번 괄호의 시작과 끝도 reverse한다.
+  // inputString을 return 한다.
+  let start = [];
+  let end = [];
+  for (let i = 0; i < inputString.length; i++) {
+    // console.log(inputString[i]);
+    if (inputString[i] == "(") {
+      start.push(i);
+      for (let j = i + 1; j < inputString.length; j++) {
+        if (inputString[j] == ")") {
+          end.push(j);
+        }
+      }
+    }
+  }
+  // console.log(start, end);
+  let rev = [];
+  for (let k = 0; k < start.length; k++) {
+    let word = inputString.slice(start[k] + 1, end[k]);
+    rev.push(word);
+  }
+  console.log(rev);
+  let fin = [];
+  for (let l = 0; l < rev.length; l++) {
+    let word = [...rev[l]].reverse().join("");
+    fin.push(word);
+  }
+
+  console.log(fin);
+  let result = inputString;
+  for (let m = 0; m < fin.length; m++) {
+    result = result.replace(rev[m], fin[m]).replace(/[{()}]/g, "");
+  }
+  return result;
+}
+
+console.log(solution("foo(bar(baz))blim"));
+
+//Q13
+function solution(inputString) {
+  while (inputString.includes("(")) {
+    inputString = inputString.replace(/\(([^()]*)\)/, (_, str) =>
+      [...str].reverse().join("")
+    );
+  }
+  return inputString;
+}
