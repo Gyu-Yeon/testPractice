@@ -110,7 +110,7 @@ function solution(inputString) {
   return result;
 }
 
-console.log(solution("foo(bar(baz))blim"));
+// console.log(solution("foo(bar(baz))blim"));
 
 //Q13
 function solution(inputString) {
@@ -121,3 +121,73 @@ function solution(inputString) {
   }
   return inputString;
 }
+
+//Q14
+function solution(a) {
+  // 배열 a 를 team1 과 team2라는 두 배열에 나누어 담는다.
+  // 짝수 는 team 1 홀수는 team2에 나누어 담는다.
+  //team1의 sum을 sum1에 저장한다.
+  //team2의 sum을 sum2에 저장한다.
+  //return sum[sum, sum2]
+  let team1 = [];
+  let team2 = [];
+  for (let i = 0; i < a.length; i++) {
+    if (i % 2 == 0) {
+      team1.push(a[i]);
+    } else {
+      team2.push(a[i]);
+    }
+  }
+  console.log(team1);
+  console.log(team2);
+  let sum1 = 0;
+  let sum2 = 0;
+
+  team1.forEach((a) => {
+    sum1 += a;
+    console.log(sum1);
+  });
+  team2.forEach((a) => {
+    sum2 += a;
+    console.log(sum2);
+  });
+  let sum = [sum1, sum2];
+  return sum;
+}
+
+let a = [50, 60, 60, 45, 70];
+// console.log(solution(a));
+
+//Q15
+function solution(a) {
+  // 주어진 배열의 길이를 확인.
+  // arr[0].length+2 = picture.length;
+  // picture.length만큼 "*" concat하여 arr[0] 과 arr[arr.length-1]에 대입
+  // arr[1]에도 앞과 뒤에 cocat"*""
+  // return picture;
+  let leng = a.length;
+
+  let each = a[0].length;
+
+  let row1 = "";
+  let rowLast = "";
+  let star = "*";
+  for (let i = 0; i < each + 2; i++) {
+    row1 = row1.concat("*");
+  }
+  for (let i = 0; i < each + 2; i++) {
+    rowLast = rowLast.concat("*");
+  }
+
+  for (let i = 0; i < a.length; i++) {
+    a[i] = a[i].concat("*");
+    a[i] = "*".concat(a[i]);
+  }
+  a.unshift(row1);
+  a.push(rowLast);
+  return a;
+}
+
+let picture = ["abc", "ded"];
+
+console.log(solution(picture));
