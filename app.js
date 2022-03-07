@@ -155,7 +155,7 @@ function solution(a) {
   return sum;
 }
 
-let a = [50, 60, 60, 45, 70];
+// let a = [50, 60, 60, 45, 70];
 // console.log(solution(a));
 
 //Q15
@@ -190,4 +190,132 @@ function solution(a) {
 
 let picture = ["abc", "ded"];
 
-console.log(solution(picture));
+// console.log(solution(picture));
+
+//Q16
+
+function solution(a, b) {
+  function solution(a, b) {
+    const ad = a.filter((v, i) => v != b[i]);
+    const bd = b.filter((v, i) => v != a[i]);
+    return (
+      ad.length == 0 || (ad.length == 2 && ad.join("") == bd.reverse().join(""))
+    );
+  }
+}
+
+// let a = [832, 998, 148, 570, 533, 561, 894, 147, 455, 279];
+// let b = [832, 570, 148, 998, 533, 561, 455, 147, 894, 279];
+// console.log(solution(a, b));
+//Q 17
+function solution(a) {
+  // a[0] 과 a[1] 을 비교하여 a[1] 이 a[0] 보다 커질때까지 a[1]에 ++ 를해준다.
+  // counter를 설정하여 ++를 해줄때마다 counter++를해준다.
+  let i = 0;
+  let j = 1;
+  let counter = 0;
+  for (let m = 0; m < a.length; m++) {
+    while (a[i] >= a[j]) {
+      a[j] = a[j] + 1;
+
+      counter++;
+    }
+    i++;
+    j++;
+  }
+  return counter;
+}
+
+// let a = [1, 1, 1];
+// console.log(solution(a));
+
+// let person = [0, 1, 2];
+
+// function change(arr) {
+//   arr = [4, 5, 6];
+//   console.log(person);
+// }
+
+// change(person);
+
+// function Student(name, age, grade) {
+//   this.name = name;
+//   this.age = age;
+//   this.grade = grade;
+//   this.sayHi = function () {
+//     console.log(`Hi my name is ${this.name} `);
+//   };
+// }
+
+// let student1 = new Student("Choi", 27, 4);
+
+// function Product(name, price) {
+//   this.name = name;
+//   this.price = price;
+//   this.vat = function () {
+//     console.log(`${this.price / 10}`);
+//   };
+// }
+
+// let product1 = new Product("shirts", 50000);
+// let product2 = new Product("pants", 50000);
+
+//Q18
+function solution(inputString) {
+  /*
+   * 1. create object where each letter will be key, each value will be how many times this letter occurs in a string
+   * 2. populate object with values by looping over the string
+   * 3. check the object:
+   * 4. if the letter can be devided by 2, it's good, if more than one letter can't be devided by 2, then it's not good
+   *
+   * */
+
+  let object = {};
+  inputString.split("").forEach((letter, index) => {
+    if (object[letter]) {
+      object[letter] = object[letter] + 1;
+    } else {
+      object[letter] = 1;
+    }
+  });
+
+  let isUnevenLetterExist = false;
+  let result = true;
+
+  let values = Object.values(object);
+  let i = 0;
+
+  while (result && i < values.length) {
+    if (values[i] % 2 === 1) {
+      if (isUnevenLetterExist) {
+        result = false;
+      } else {
+        isUnevenLetterExist = true;
+      }
+    }
+    i++;
+  }
+
+  return result;
+}
+//Q 19
+function solution(yourLeft, yourRight, friendsLeft, friendsRight) {
+  // if YL ==  FL  YR == fR true
+  // if YL == FR YR == FL true
+  // none of these return false;
+  if (yourLeft == friendsLeft || yourLeft == friendsRight) {
+    if (yourRight == friendsRight || yourRight == friendsLeft) {
+      return true;
+    }
+  }
+  if (yourLeft != friendsLeft || yourLeft != friendsRight) {
+    if (yourRight != friendsLeft || yourRight != friendsRight) {
+      return false;
+    }
+  }
+}
+let yourLeft = 20,
+  yourRight = 15,
+  friendsLeft = 5,
+  friendsRight = 20;
+console.log(solution(yourLeft, yourRight, friendsLeft, friendsRight));
