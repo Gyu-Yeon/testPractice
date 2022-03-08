@@ -318,4 +318,80 @@ let yourLeft = 20,
   yourRight = 15,
   friendsLeft = 5,
   friendsRight = 20;
-console.log(solution(yourLeft, yourRight, friendsLeft, friendsRight));
+// console.log(solution(yourLeft, yourRight, friendsLeft, friendsRight));
+
+// function Student(name, age) {
+//   this.name = name;
+//   this.age = age;
+//   this.sayHi = function () {
+//     console.log(`Hi I'm ${this.name}`);
+//   };
+// }
+
+// let student1 = new Student("Kim", 20);
+// let student2 = new Student("Park", 21);
+// let student3 = new Student("Lee", 21);
+
+// function Student(이름, 나이) {
+//   this.name = 이름;
+//   this.age = 나이;
+// }
+
+// Student.prototype.sayHi = () => {
+//   console.log("안녕 나는 " + this.name + "이야");
+// };
+// var 학생1 = new Student("Kim", 20);
+
+// 학생1.sayHi();
+
+//Q 20
+function solution(a) {
+  if (a.length == 1) {
+    return a[0];
+  }
+  let ab1 = Math.abs(a[0] - a[1]);
+
+  for (let i = 1; i < a.length - 1; i++) {
+    let ab2 = Math.abs(a[i] - a[i + 1]);
+    if (ab1 < ab2) {
+      ab1 = ab2;
+    }
+  }
+  return ab1;
+}
+
+// console.log(solution([-1, 1, -3, -4]));
+
+//Q21
+function solution(s) {
+  //counter = [] counter 에 s[i] == '.' 이면 i 를 push
+  // if( slice(0,3)) 까지 0< s < 255 이면 다음 step 아니면 return false
+  // counter에 저장된 점 1과 2 사이의 수에 첫번째 step 진행
+  // 점 2와 3사이의 수에 첫번째 step 진행
+  // 점 3 뒤의 수
+  let counter = [];
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] == ".") {
+      counter.push(i);
+      console.log(counter);
+    }
+  }
+  let first = 0;
+  let m = 0;
+  let last = counter[m];
+  while (m < counter.length) {
+    let num = s.slice(first, last);
+
+    if (0 <= num && num <= 255) {
+      first = counter[m] + 1;
+      m++;
+      last = counter[m];
+      console.log(first, last, m);
+    } else {
+      return false;
+    }
+  }
+  return true;
+}
+
+console.log(solution("172.16.254.1"));
