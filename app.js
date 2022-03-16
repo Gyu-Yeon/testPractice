@@ -143,11 +143,11 @@ function solution(a) {
   let sum1 = 0;
   let sum2 = 0;
 
-  team1.forEach((a) => {
+  team1.forEach(a => {
     sum1 += a;
     console.log(sum1);
   });
-  team2.forEach((a) => {
+  team2.forEach(a => {
     sum2 += a;
     console.log(sum2);
   });
@@ -394,4 +394,121 @@ function solution(s) {
   return true;
 }
 
-console.log(solution("172.16.254.1"));
+// console.log(solution("172.16.254.1"));
+
+//leetCode
+var twoSum = function (nums, target) {
+  let idx1 = 0;
+  let idx2 = 1;
+  while (idx1 < nums.length) {
+    if (nums[idx1] + nums[idx2] == target) {
+      return [idx1, idx2];
+    } else {
+      idx2++;
+    }
+    if (idx2 == nums.length) {
+      idx1++;
+      idx2 = idx1 + 1;
+    }
+  }
+};
+
+// console.log(twoSum([2, 5, 5, 11], 10));
+
+var isPalindrome = function (x) {
+  // toString 함수를 사용하여 숫자를 문자로 변환
+  // .split('') 함수를 사용하여 문자로 변한 숫자를 한자리씩 arr에 저장.
+  // .reverse 함수로 arr의 안에 숫자를 반전 시킴.
+  //. .join("")함수를 사용하여 뒤집어진 문자화된 숫자를 한 문자로 변경
+  // parseInt로 문자를 숫자로 바꾼후, 파라미터 x와 비교하여 같다면 true 같지 않다면 false를 return
+  let reversed = x.toString();
+  let changed = reversed.split("").reverse().join("");
+
+  let palind = parseInt(changed);
+  if (palind == x) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+// console.log(isPalindrome(123));
+
+class Dogs {
+  constructor(type, color) {
+    this.type = type;
+    this.color = color;
+  }
+  한살먹기() {
+    if (this instanceof Cats) {
+      this.age++;
+    }
+  }
+}
+
+let dog1 = new Dogs("말티즈", "White");
+let dog2 = new Dogs("진돗개", "Brown");
+
+class Cats extends Dogs {
+  constructor(type, color, age) {
+    super(type, color);
+    this.age = age;
+  }
+}
+
+let cat1 = new Cats("코숏", "White", 5);
+let cat2 = new Cats("러시안블루", "Brown", 2);
+
+class Unit {
+  constructor() {
+    this.attack = 5;
+    this.health = 100;
+  }
+  get battlePoint() {
+    return this.health + this.attack;
+  }
+  set heal(a) {
+    this.health = this.health + a;
+  }
+}
+
+let 유닛 = new Unit();
+
+let data = {
+  odd: [],
+  even: [],
+  set setter(arr) {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] % 2 == 0) {
+        this.even.push(arr[i]);
+      } else {
+        this.odd.push(arr[i]);
+      }
+    }
+  },
+  get getter() {
+    return this.odd.concat(this.even).sort((a, b) => {
+      return a - b;
+    });
+  },
+};
+
+// let 신체정보 = {
+//   body: {
+//     height: 190,
+//     weight: 70,
+//   },
+//   size: ["상의 Large", "바지 30인치"],
+// };
+
+// let {
+//   body: { height, weight },
+//   size: [상의사이즈, 하의사이즈],
+// } = 신체정보;
+function recursion(n) {
+  console.log(n);
+  while (3 < n) {
+    return recursion(n - 1);
+  }
+}
+console.log(recursion(10));
